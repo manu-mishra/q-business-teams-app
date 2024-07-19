@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  CodeBuildServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [codebuild.amazonaws.com]
+            Action: ['sts:AssumeRole']
+      Policies:
+        - PolicyName: CodeBuildLoggingPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource: 'arn:aws:logs:*:*:*'
+
+        - PolicyName: CodeBuildCloudFormationPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'cloudformation:*'
+                Resource: '*'
+
+  CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: CDKDeploymentProject
+      Description: 'CodeBuild project to deploy CDK stacks from GitHub'
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+      Source:
+        Type: GITHUB
+        Location: 'git@github.com:manu-mishra/q-business-teams-app.git'
+        BuildSpec: 'buildspec.yml'
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: 'aws/codebuild/standard:5.0'
+      Artifacts:
+        Type: NO_ARTIFACTS

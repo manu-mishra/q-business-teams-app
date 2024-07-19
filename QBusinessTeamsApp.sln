@@ -9,24 +9,44 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\src\Infra\Infra.csproj", "{162E82DC-347E-4502-9938-98BC1E4BA370}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B93A26D3-2C43-4B7D-B882-3F1020EA25D0}"
+	ProjectSection(SolutionItems) = preProject
+		CloudFormationTemplate.yml = CloudFormationTemplate.yml
+		buildspec.yml = buildspec.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Debug|x86.Build.0 = Debug|Any CPU
 		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Release|x86.ActiveCfg = Release|Any CPU
+		{E124AF50-F348-4526-8C53-01C1817D7EF4}.Release|x86.Build.0 = Release|Any CPU
 		{47CB9AF1-0065-4319-94CA-74475910E513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{47CB9AF1-0065-4319-94CA-74475910E513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CB9AF1-0065-4319-94CA-74475910E513}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{47CB9AF1-0065-4319-94CA-74475910E513}.Debug|x86.Build.0 = Debug|Any CPU
 		{47CB9AF1-0065-4319-94CA-74475910E513}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47CB9AF1-0065-4319-94CA-74475910E513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CB9AF1-0065-4319-94CA-74475910E513}.Release|x86.ActiveCfg = Release|Any CPU
+		{47CB9AF1-0065-4319-94CA-74475910E513}.Release|x86.Build.0 = Release|Any CPU
 		{162E82DC-347E-4502-9938-98BC1E4BA370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{162E82DC-347E-4502-9938-98BC1E4BA370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{162E82DC-347E-4502-9938-98BC1E4BA370}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{162E82DC-347E-4502-9938-98BC1E4BA370}.Debug|x86.Build.0 = Debug|Any CPU
 		{162E82DC-347E-4502-9938-98BC1E4BA370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{162E82DC-347E-4502-9938-98BC1E4BA370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{162E82DC-347E-4502-9938-98BC1E4BA370}.Release|x86.ActiveCfg = Release|Any CPU
+		{162E82DC-347E-4502-9938-98BC1E4BA370}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

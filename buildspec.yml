@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 8
+      nodejs: 20
+    commands:
+      - npm install -g aws-cdk
+  pre_build:
+    commands:
+      - dotnet restore QBusinessTeamsApp.sln
+  build:
+    commands:
+      - dotnet build MySolution.sln --configuration Release
+      - cd Infra
+      - cdk deploy --require-approval never

@@ -6,9 +6,9 @@ using Infra.Lambda;
 
 namespace Infra
 {
-    public class InfraStack : Stack
+    public class QBusinessTeamsGatewayAppStack : Stack
     {
-        internal InfraStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
+        internal QBusinessTeamsGatewayAppStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
             // DynamoDB Table
             var table = this.ConfigureChatSessionsTable();

@@ -12,46 +12,52 @@ namespace Infra.Lambda
     {
         public static Function ConfigureChatApiLambda(this Construct scope, Table chatSessionDynamoDbTable)
         {
+            string functionName = "ChatApiFunction";
+            var logGroup = new LogGroup(scope, "ChatApiLogGroup", new LogGroupProps
+            {
+                LogGroupName = $"/aws/lambda/{functionName}",
+                Retention = RetentionDays.ONE_DAY,
+                RemovalPolicy = RemovalPolicy.DESTROY
+            });
+
             var lambdaFunction =
             new Function(scope, "ChatApiFunction", new FunctionProps
             {
-                FunctionName = "ChatApiFunction",
-                Runtime = Runtime.DOTNET_6,
+                FunctionName = functionName,
+                Runtime = Runtime.DOTNET_8,
                 Code = Code.FromAsset("../Api/bin/release/net8.0"),
                 Handler = "Api",
                 Environment = new Dictionary<string, string>
                 {
                     { "TABLE_NAME", chatSessionDynamoDbTable.TableName }
-                }
+                },
+                LogGroup = logGroup,
+                Tracing = Tracing.ACTIVE,
+                Architecture = Architecture.ARM_64
             });
-
-            new LogGroup(scope, "ChatApiLogGroup", new LogGroupProps
-            {
-                LogGroupName = $"/aws/lambda/{lambdaFunction.FunctionName}",
-                Retention = RetentionDays.ONE_DAY,
-                RemovalPolicy = RemovalPolicy.DESTROY // Automatically delete the log group when the stack is deleted
-            });
-
             chatSessionDynamoDbTable.GrantReadWriteData(lambdaFunction);
             return lambdaFunction;
         }
 
         public static Function ConfigureAuthorizerLambda(this Construct scope)
         {
+            string functionName = "ApiGatewayAuthorizerFunction";
+            var logGroup = new LogGroup(scope, "ApiGatewayAuthorizerFunctionLogGroup", new LogGroupProps
+            {
+                LogGroupName = $"/aws/lambda/{functionName}",
+                Retention = RetentionDays.ONE_DAY,
+                RemovalPolicy = RemovalPolicy.DESTROY
+            });
             var lambdaFunction =
             new Function(scope, "ApiGatewayAuthorizerFunction", new FunctionProps
             {
-                FunctionName = "ApiGatewayAuthorizerFunction",
-                Runtime = Runtime.DOTNET_6,
+                FunctionName = functionName,
+                Runtime = Runtime.DOTNET_8,
                 Code = Code.FromAsset("../Authorizer/bin/release/net8.0"),
-                Handler = "Authorizer::Authorizer.Function::Main"
-            });
-
-            new LogGroup(scope, "AuthorizerLogGroup", new LogGroupProps
-            {
-                LogGroupName = $"/aws/lambda/{lambdaFunction.FunctionName}",
-                Retention = RetentionDays.ONE_DAY,
-                RemovalPolicy = RemovalPolicy.DESTROY
+                Handler = "Authorizer::Authorizer.Function::Main",
+                LogGroup = logGroup,
+                Tracing = Tracing.ACTIVE,
+                Architecture = Architecture.ARM_64,
             });
             return lambdaFunction;
         }

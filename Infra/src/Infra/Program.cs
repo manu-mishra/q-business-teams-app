@@ -7,7 +7,7 @@ namespace Infra
         public static void Main(string[] args)
         {
             var app = new App();
-            new InfraStack(app, "InfraStack", new StackProps
+            new QBusinessTeamsGatewayAppStack(app, "InfraStack", new StackProps
             {
                 // If you don't specify 'env', this stack will be environment-agnostic.
                 // Account/Region-dependent features and context lookups will not work,
@@ -26,11 +26,11 @@ namespace Infra
                 // Uncomment the next block if you know exactly what Account and Region you
                 // want to deploy the stack to.
 
-                Env = new Amazon.CDK.Environment
-                {
-                    Account = "749484261413",
-                    Region = "us-east-1",
-                }
+                //Env = new Amazon.CDK.Environment
+                //{
+                //    Account = "123456",
+                //    Region = "us-east-1",
+                //}
 
 
                 // For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
